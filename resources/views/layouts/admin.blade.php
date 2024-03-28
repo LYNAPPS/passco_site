@@ -12,6 +12,23 @@
 </head>
 
 <body>
+    <div class="container-scroller">
+        <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            @include('layouts.navbars.admin_top_nav')
+        </nav>
+
+        <div class="container-fluid page-body-wrapper">
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+
+                @include('layouts.navbars.admin_sidebar')
+            </nav>
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    @yield('main')
+                </div>
+            </div>
+        </div>
+    </div>
     @include('layouts.js.admin_script')
 </body>
 
