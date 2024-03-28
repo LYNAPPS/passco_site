@@ -6,20 +6,23 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <form method="POST" action="{{ route('password.email') }}">
+    <form class="pt-3" method="POST" action="{{ route('password.email') }}">
         @csrf
 
         <!-- Email Address -->
-        <div>
+        <div class="form-group">
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+            <input type="email" class="form-control form-control-lg" placeholder="Email" name="email"
+                value="{{ old('email') }}" required autofocus>
+
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
+
+        <div class="mt-3">
+            <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
                 {{ __('Email Password Reset Link') }}
-            </x-primary-button>
+            </button>
         </div>
     </form>
 </x-guest-layout>

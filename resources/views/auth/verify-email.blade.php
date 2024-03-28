@@ -9,23 +9,25 @@
         </div>
     @endif
 
-    <div class="mt-4 flex items-center justify-between">
+    <div class="pt-3 mt-4 flex items-center justify-between">
         <form method="POST" action="{{ route('verification.send') }}">
             @csrf
-
-            <div>
-                <x-primary-button>
+            <div class="mt-3">
+                <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
                     {{ __('Resend Verification Email') }}
-                </x-primary-button>
+                </button>
             </div>
         </form>
 
-        <form method="POST" action="{{ route('logout') }}">
+        <form class="pt-3" method="POST" action="{{ route('logout') }}">
             @csrf
 
-            <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                {{ __('Log Out') }}
-            </button>
+            <div class="mt-3">
+                <button class="btn btn-block btn-warning btn-lg font-weight-medium auth-form-btn">
+                    {{ __('Log Out') }}
+                </button>
+            </div>
+
         </form>
     </div>
 </x-guest-layout>
