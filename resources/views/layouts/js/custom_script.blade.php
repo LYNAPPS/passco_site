@@ -36,3 +36,28 @@
         });
     });
 </script>
+
+
+
+<!-- In your Blade template -->
+<script>
+    var timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+    $.ajax({
+        url: '/update-timezone',
+        type: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {
+            timezone: timezone
+        },
+        success: function(response) {
+            // console.log('Timezone updated successfully');
+            // console.log(timezone);
+        },
+        error: function(xhr, status, error) {
+            console.error('Error updating timezone:', error);
+        }
+    });
+</script>

@@ -3,17 +3,26 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\GreetingController;
 use App\Models\ExamType;
 use App\Models\Level;
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Mockery\Matcher\Subset;
 
 class AdminPagesController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('dashboard');
+        $timezone = $request->session()->get('user_timezone');
+
+        $greetingController = new GreetingController();
+        $greeting = $greetingController->greetUser($timezone);
+
+        $classes = Level::count();
+        $subjects = Subject::count();
+        return view('dashboard', compact('timezone', 'greeting', 'classes', 'subjects'));
     }
 
     public function examsTypes()
@@ -31,5 +40,14 @@ class AdminPagesController extends Controller
     {
         $subjects = Subject::all();
         return view('subject.index', compact('subjects'));
+    }
+
+
+    public function getUserTimezone(Request $request)
+    {
+        $timezone = $request->timezone;
+        session(['user_timezone' => $timezone]);
+
+        return response()->json(['message' => 'User timezone saved successfully']);
     }
 }

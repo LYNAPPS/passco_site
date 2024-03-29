@@ -39,6 +39,8 @@ Route::middleware('auth', 'verified')->group(function () {
             Route::get('/classes', 'levels')->name('levels.index');
             Route::get('/subjects', 'subjects')->name('subjects.index');
             Route::get('/exams-types', 'examsTypes')->name('exams.index');
+
+            Route::post('/update-timezone', 'getUserTimezone')->name('get-user-timezone');
         });
 
         Route::controller(ExaminationTypeController::class)->group(function () {
