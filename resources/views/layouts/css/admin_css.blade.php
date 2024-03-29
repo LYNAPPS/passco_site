@@ -12,3 +12,4 @@
 <link rel="stylesheet" href="{{ url('assets/admin/css/vertical-layout-light/style.css') }}">
 <!-- endinject -->
 <link rel="shortcut icon" href="{{ url('assets/admin/images/favicon.png') }}" />
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>

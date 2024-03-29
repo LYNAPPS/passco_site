@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminClassesController;
 use App\Http\Controllers\Admin\AdminPagesController;
 use App\Http\Controllers\Admin\AdminSubjectsController;
+use App\Http\Controllers\Admin\ExaminationTypeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,16 @@ Route::middleware('auth', 'verified')->group(function () {
             Route::get('/dashboard', 'index')->name('dashboard');
             Route::get('/classes', 'classes')->name('classes');
             Route::get('/subjects', 'subjects')->name('subjects');
+            Route::get('/exams-types', 'examsTypes')->name('exams.index');
+        });
+
+        Route::controller(ExaminationTypeController::class)->group(function () {
+            Route::get('/exams-types/create', 'create')->name('exams.create');
+            Route::post('/exams-types/store', 'store')->name('exams.store');
+            Route::get('/exams/{examType}/edit', 'edit')->name('exams.edit');
+            Route::put('/exams/{examType}', 'update')->name('exams.update');
+
+            Route::delete('/exams/{examType}', 'destroy')->name('exams.destroy');
         });
 
         Route::controller(AdminClassesController::class)->group(function () {

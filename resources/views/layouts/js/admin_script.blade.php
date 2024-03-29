@@ -19,3 +19,5 @@
 <script src="{{ url('assets/admin/js/dashboard.js') }}"></script>
 <script src="{{ url('assets/admin/js/Chart.roundedBarCharts.js') }}"></script>
 <!-- End custom js for this page-->
+
+@include('layouts.js.custom_script')
