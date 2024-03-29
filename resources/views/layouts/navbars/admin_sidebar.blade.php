@@ -7,8 +7,8 @@
     </x-dropdown>
 
     <x-dropdown id="classes" label="Classes" icon="icon-layout">
-        <x-dropdown-link route="classes" label="View All" />
-        <x-dropdown-link route="classes" label="Add Class" />
+        <x-dropdown-link route="levels.index" label="View All" />
+        <x-dropdown-link route="levels.create" label="Add Class" />
     </x-dropdown>
 
     <x-dropdown id="subjects" label="Subjects" icon="icon-book">
