@@ -37,7 +37,7 @@ Route::middleware('auth', 'verified')->group(function () {
         Route::controller(AdminPagesController::class)->group(function () {
             Route::get('/dashboard', 'index')->name('dashboard');
             Route::get('/classes', 'levels')->name('levels.index');
-            Route::get('/subjects', 'subjects')->name('subjects');
+            Route::get('/subjects', 'subjects')->name('subjects.index');
             Route::get('/exams-types', 'examsTypes')->name('exams.index');
         });
 
@@ -61,6 +61,12 @@ Route::middleware('auth', 'verified')->group(function () {
 
 
         Route::controller(AdminSubjectsController::class)->group(function () {
+            Route::get('/subject-create', 'create')->name('subjects.create');
+            Route::post('/subject/store', 'store')->name('subjects.store');
+            Route::get('/subject/{subject}/edit', 'edit')->name('subjects.edit');
+            Route::put('/subject/{subject}/update', 'update')->name('subjects.update');
+
+            Route::delete('/subject/{subject}destory', 'destroy')->name('subjects.destroy');
         });
     });
 

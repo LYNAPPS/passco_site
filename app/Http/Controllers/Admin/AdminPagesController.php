@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\ExamType;
 use App\Models\Level;
+use App\Models\Subject;
 use Illuminate\Http\Request;
+use Mockery\Matcher\Subset;
 
 class AdminPagesController extends Controller
 {
@@ -27,5 +29,7 @@ class AdminPagesController extends Controller
     }
     public function subjects()
     {
+        $subjects = Subject::all();
+        return view('subject.index', compact('subjects'));
     }
 }

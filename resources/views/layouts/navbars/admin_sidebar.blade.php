@@ -12,12 +12,12 @@
     </x-dropdown>
 
     <x-dropdown id="subjects" label="Subjects" icon="icon-book">
-        <x-dropdown-link route="subjects" label="View All" />
-        <x-dropdown-link route="subjects" label="Add Subject" />
+        <x-dropdown-link route="subjects.index" label="View All" />
+        <x-dropdown-link route="subjects.create" label="Add Subject" />
     </x-dropdown>
 
     <x-dropdown id="users" label="Users" icon="icon-head">
-        <x-dropdown-link route="subjects" label="View All" />
-        <x-dropdown-link route="subjects" label="Add New" />
+        <x-dropdown-link route="subjects.store" label="View All" />
+        <x-dropdown-link route="subjects.store" label="Add New" />
     </x-dropdown>
 </ul>
