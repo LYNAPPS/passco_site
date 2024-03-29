@@ -1,36 +1,18 @@
 <ul class="nav">
-    <li class="nav-item">
-        <a class="nav-link" href="index.html">
-            <i class="icon-grid menu-icon"></i>
-            <span class="menu-title">Dashboard</span>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-            <i class="icon-layout menu-icon"></i>
-            <span class="menu-title">UI Elements</span>
-            <i class="menu-arrow"></i>
-        </a>
-        <div class="collapse" id="ui-basic">
-            <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
-            </ul>
-        </div>
-    </li>
+    <x-nav-link-single route="dashboard" icon="icon-grid" label="Dashboard" />
 
-    <li class="nav-item">
-        <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-            <i class="icon-head menu-icon"></i>
-            <span class="menu-title">User Pages</span>
-            <i class="menu-arrow"></i>
-        </a>
-        <div class="collapse" id="auth">
-            <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-            </ul>
-        </div>
-    </li>
+    <x-dropdown id="classes" label="Classes" icon="icon-layout">
+        <x-dropdown-link route="classes" label="View All" />
+        <x-dropdown-link route="classes" label="Add Class" />
+    </x-dropdown>
+
+    <x-dropdown id="subjects" label="Subjects" icon="icon-book">
+        <x-dropdown-link route="subjects" label="View All" />
+        <x-dropdown-link route="subjects" label="Add Subject" />
+    </x-dropdown>
+
+    <x-dropdown id="users" label="Users" icon="icon-head">
+        <x-dropdown-link route="subjects" label="View All" />
+        <x-dropdown-link route="subjects" label="Add New" />
+    </x-dropdown>
 </ul>
