@@ -9,4 +9,9 @@ class ExamType extends Model
 {
     use HasFactory;
     protected $fillable = ['name', 'slug', 'short_name'];
+
+    public function subjects()
+    {
+        return $this->hasMany(Subject::class);
+    }
 }

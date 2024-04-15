@@ -8,6 +8,9 @@ class GreetingController extends Controller
 {
     public function greetUser($timezone)
     {
+        if ($timezone ==  null) {
+            $timezone = 'Africa/Accra';
+        }
         // Set the timezone
         date_default_timezone_set($timezone);
 

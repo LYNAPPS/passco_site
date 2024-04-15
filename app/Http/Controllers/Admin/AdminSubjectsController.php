@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ExamType;
 use App\Models\Level;
 use App\Models\Subject;
 use Illuminate\Http\Request;
@@ -14,14 +15,14 @@ class AdminSubjectsController extends Controller
     }
     public function create()
     {
-        $levels = Level::all();
-        return view('subject.create', compact('levels'));
+        $exams = ExamType::all();
+        return view('subject.create', compact('exams'));
     }
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'level_id' => 'required|exists:levels,id',
+            'exam_type_id' => 'required|exists:exam_types,id',
         ]);
         $data = $request->except(['_token']);
 
@@ -32,15 +33,15 @@ class AdminSubjectsController extends Controller
 
     public function edit(Subject $subject)
     {
-        $levels = Level::all();
-        return view('subject.edit', compact('subject', 'levels'));
+        // $levels = Level::all();
+        return view('subject.edit', compact('subject'));
     }
 
     public function update(Request $request, Subject $subject)
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'level_id' => 'required|exists:levels,id',
+            // 'level_id' => 'required|exists:levels,id',
         ]);
 
         $subject->update($request->all());

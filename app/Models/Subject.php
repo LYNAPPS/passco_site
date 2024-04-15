@@ -10,7 +10,7 @@ class Subject extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'level_id', 'slug'];
+    protected $fillable = ['name', 'exam_type_id', 'slug'];
 
     protected static function boot()
     {
@@ -22,8 +22,8 @@ class Subject extends Model
     }
 
 
-    public function level()
+    public function exam()
     {
-        return $this->belongsTo(Level::class);
+        return $this->belongsTo(ExamType::class);
     }
 }

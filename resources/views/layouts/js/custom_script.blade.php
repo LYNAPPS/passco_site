@@ -41,7 +41,8 @@
 
 <!-- In your Blade template -->
 <script>
-    var timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    var timezone = Intl.DateTimeFormat().resolvedOptions().timeZone ?? 'Africa/Accra';
+
 
     $.ajax({
         url: '/update-timezone',
@@ -59,5 +60,13 @@
         error: function(xhr, status, error) {
             console.error('Error updating timezone:', error);
         }
+    });
+</script>
+
+
+<script>
+    // Automatically close alerts after 5 seconds
+    $(document).ready(function() {
+        $('.alert_dismis').delay(5000).fadeOut('slow');
     });
 </script>

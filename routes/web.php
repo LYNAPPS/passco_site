@@ -5,7 +5,9 @@ use App\Http\Controllers\Admin\AdminPagesController;
 use App\Http\Controllers\Admin\AdminSubjectsController;
 use App\Http\Controllers\Admin\ExaminationTypeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ResourceController;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\VarDumper\Caster\ResourceCaster;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,18 +20,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/*--
-
-    dashboard
-    classes
-    subjects
-
-
-*/
 
 Route::get('/', function () {
     return view('welcome');
 });
+
 
 Route::middleware('auth', 'verified')->group(function () {
     Route::middleware('verified')->group(function () {
@@ -69,6 +64,11 @@ Route::middleware('auth', 'verified')->group(function () {
             Route::put('/subject/{subject}/update', 'update')->name('subjects.update');
 
             Route::delete('/subject/{subject}destory', 'destroy')->name('subjects.destroy');
+        });
+
+        Route::controller(ResourceController::class)->group(function () {
+            Route::get('/resources', 'index')->name('resources');
+            Route::get('/resources_create', 'create')->name('resoures.create');
         });
     });
 

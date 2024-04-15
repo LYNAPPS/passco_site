@@ -18,7 +18,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="level">Select Class</label>
                             <select name="level_id" id="level_id" class="form-control">
                                 <option value="">Select A Class</option>
@@ -32,7 +32,7 @@
                             @error('level_id')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div> --}}
 
                         <button type="submit" class="btn btn-primary mr-2">Update</button>
                     </form>

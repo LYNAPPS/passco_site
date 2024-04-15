@@ -8,6 +8,22 @@
                     <form class="forms-sample" action="{{ route('subjects.store') }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
+
+                        <div class="form-group">
+                            <label for="level">Select Exams Type</label>
+                            <select name="exam_type_id" id="exam_type_id" class="form-control">
+                                <option value="">Select Exams Type</option>
+                                @if ($exams->isEmpty())
+                                    <option value="">No Exams Type Available</option>
+                                @else
+                                    @foreach ($exams as $exam)
+                                        <option value="{{ $exam->id }}">{{ $exam->name }}</option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+
+
                         <div class="form-group">
                             <label for="name">Subject Name</label>
                             <input type="text" class="form-control" id="name" name="name"
@@ -15,20 +31,6 @@
                             @error('name')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label for="level">Select Class</label>
-                            <select name="level_id" id="level_id" class="form-control">
-                                <option value="">Select A Class</option>
-                                @if ($levels->isEmpty())
-                                    <option value="">No Classes Available</option>
-                                @else
-                                    @foreach ($levels as $level)
-                                        <option value="{{ $level->id }}">{{ $level->name }}</option>
-                                    @endforeach
-                                @endif
-                            </select>
                         </div>
 
                         <button type="submit" class="btn btn-primary mr-2">Submit</button>
