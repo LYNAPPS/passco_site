@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminClassesController;
 use App\Http\Controllers\Admin\AdminPagesController;
 use App\Http\Controllers\Admin\AdminSubjectsController;
 use App\Http\Controllers\Admin\ExaminationTypeController;
+use App\Http\Controllers\HomePagesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResourceController;
 use Illuminate\Support\Facades\Route;
@@ -21,8 +22,13 @@ use Symfony\Component\VarDumper\Caster\ResourceCaster;
 */
 
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::controller(HomePagesController::class)->group(function () {
+    Route::get('/', 'index')->name('homepage');
+    Route::get('/libraries', 'libraries')->name('libraries');
 });
 
 

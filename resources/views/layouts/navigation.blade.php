@@ -5,7 +5,7 @@
     <div class="h7_header-area header-sticky">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-xxl-7 col-xl-8 col-lg-6 col-6">
+                <div class="col-xxl-12 col-xl-9 col-lg-7 col-6">
                     <div class="h7_header-left">
                         <div class="h7_header-logo">
                             <x-application-logo />
@@ -13,16 +13,18 @@
                         <div class="h7_header-menu d-none d-xl-block">
                             <nav class="h7_main-menu mobile-menu" id="mobile-menu">
                                 <ul>
-                                    <li><a href="/">Home</a></li>
+                                    <li><a href="{{ route('homepage') }}">Home</a></li>
+                                    <li><a href="{{ route('libraries') }}">Pasco Library</a></li>
+                                    <li><a href="{{ route('libraries') }}">Lessions</a></li>
                                     <li><a href="/">About Us</a></li>
-                                    <li><a href="/">Courses</a></li>
                                     <li><a href="/">Contact</a></li>
                                 </ul>
                             </nav>
                         </div>
                     </div>
                 </div>
-                <div class="col-xxl-5 col-xl-4 col-lg-6 col-6">
+
+                <div class="col-xxl-5 col-xl-3 col-lg-5 col-6">
                     <div class="h8_header-right">
                         <div class="h8_header-action d-none d-sm-flex">
                             <a href="#" class="h8_header-login">
