@@ -8,7 +8,7 @@
                 <div class="col-xxl-12 col-xl-9 col-lg-7 col-6">
                     <div class="h7_header-left">
                         <div class="h7_header-logo">
-                            <x-application-logo />
+                            {{-- <x-application-logo /> --}}
                         </div>
                         <div class="h7_header-menu d-none d-xl-block">
                             <nav class="h7_main-menu mobile-menu" id="mobile-menu">
