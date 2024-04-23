@@ -29,6 +29,11 @@ use Symfony\Component\VarDumper\Caster\ResourceCaster;
 Route::controller(HomePagesController::class)->group(function () {
     Route::get('/', 'index')->name('homepage');
     Route::get('/libraries', 'libraries')->name('libraries');
+    Route::get('/all-subjects', 'allSubjects')->name('subjects-all');
+    Route::get('/{slug}/{id}/pasco-all', 'viewSubjectPasco')->name('view-subject-pasco');
+    Route::get('/{slug}/{id}/view-library', 'viewExamLibrary')->name('view-exams-library');
+    Route::get('/exams/{examType}/content', 'fetchContent')->name('exams.content');
+    Route::get('/subjects/all', 'fetchAllSubjects')->name('exams.content');
 });
 
 

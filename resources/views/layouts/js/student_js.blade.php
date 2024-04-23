@@ -10,3 +10,4 @@
 <script src="{{ url('assets/frontend/js/appear.min.js') }}"></script>
 <script src="{{ url('assets/frontend/js/jquery.bxslider.min.js') }}"></script>
 <script src="{{ url('assets/frontend/js/main.js') }}"></script>
+@stack('scripts')

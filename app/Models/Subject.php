@@ -22,8 +22,8 @@ class Subject extends Model
     }
 
 
-    public function exam()
+    public function examType()
     {
-        return $this->belongsTo(ExamType::class);
+        return $this->belongsTo(ExamType::class, 'exam_type_id');
     }
 }

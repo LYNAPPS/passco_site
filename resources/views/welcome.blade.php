@@ -75,6 +75,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
 
@@ -83,7 +84,7 @@
     </section>
 
 
-    <section class="h8_about-area pt-120 pb-70">
+    <section class="h4_category-area pt-130 pb-70">
         <div class="container">
             <div class="row">
                 <div class="col-xl-6 col-lg-6">
@@ -129,7 +130,7 @@
 
 
     <!-- category area start -->
-    <x-student-subject />
+    {{-- <x-student-subject /> --}}
     <!-- category area end -->
 
 </x-app-layout>
