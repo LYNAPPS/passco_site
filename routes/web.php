@@ -25,17 +25,20 @@ use Symfony\Component\VarDumper\Caster\ResourceCaster;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-
-Route::controller(HomePagesController::class)->group(function () {
-    Route::get('/', 'index')->name('homepage');
-    Route::get('/libraries', 'libraries')->name('libraries');
-    Route::get('/all-subjects', 'allSubjects')->name('subjects-all');
-    Route::get('/{slug}/{id}/pasco-all', 'viewSubjectPasco')->name('view-subject-pasco');
-    Route::get('/{slug}/{id}/view-library', 'viewExamLibrary')->name('view-exams-library');
-    Route::get('/exams/{examType}/content', 'fetchContent')->name('exams.content');
-    Route::get('/subjects/all', 'fetchAllSubjects')->name('exams.content');
+Route::middleware(['visitor'])->group(function () {
+    Route::controller(HomePagesController::class)->group(function () {
+        Route::get('/', 'index')->name('homepage');
+        Route::get('/libraries', 'libraries')->name('libraries');
+        Route::get('/all-subjects', 'allSubjects')->name('subjects-all');
+        Route::get('/{slug}/{id}/pasco-all', 'viewSubjectPasco')->name('view-subject-pasco');
+        Route::get('/{slug}/{id}/view-library', 'viewExamLibrary')->name('view-exams-library');
+        Route::get('/exams/{examType}/content', 'fetchContent')->name('exams.content');
+        Route::get('/subjects/all', 'fetchAllSubjects')->name('exams.content');
+        Route::get('/download/step-one', 'submitNumber')->name('submit.phone');
+        Route::get('/download/step-two', 'submitOtherDetails')->name('submit.details');
+        Route::get('/download/preview', 'downloadPreview')->name('submit.details');
+    });
 });
-
 
 Route::middleware('auth', 'verified')->group(function () {
     Route::middleware('verified')->group(function () {

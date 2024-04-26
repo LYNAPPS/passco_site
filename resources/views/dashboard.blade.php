@@ -14,4 +14,10 @@
         <x-dashboard-card data="{{ $classes }}" label="No. of Classes" />
         <x-dashboard-card data="{{ $subjects }}" label="No. of Subjects" />
     </div>
+    <div class="row">
+        <div class="col-md-12 grid-margin">
+
+            <x-visitor-chart />
+        </div>
+    </div>
 @endsection

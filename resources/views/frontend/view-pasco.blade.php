@@ -5,8 +5,8 @@
             <div class="row align-items-end mb-30">
                 <div class="col-md-9">
                     <div class="section-area-3 mb-30">
-                        <span class="section-subtitle">Popular Categories</span>
-                        <h2 class="section-title mb-0">Featured Design Category.</h2>
+                        <span class="section-subtitle">Resources</span>
+
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -16,23 +16,30 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xl-4 col-lg-6">
-                    <div class="h3_category-item mb-30">
-                        <div class="h3_category_inner">
-                            <div class="h3_category-item-content">
-                                <h5><a href="course.html">Integrated Science - Objective (2023)</a></h5>
-                            </div>
-                            <div class="h3_category-btn">
-                                <a href="#"><i class="fa-light fa-download"></i></a>
+                @for ($i = 0; $i < 12; $i++)
+                    <div class="col-xl-4 col-lg-6">
+                        <div class="h3_category-item mb-30">
+                            <div class="h3_category_inner">
+                                <div class="h3_category-item-content">
+                                    <h5><a href="{{ route('submit.phone') }}">Integrated Science - Objective (2023)</a>
+                                    </h5>
+                                </div>
+                                <div class="h3_category-btn">
+                                    <a href="{{ route('submit.phone') }}"><i class="fa-light fa-download"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endfor
+
 
                 <style>
                     .h3_category-item {
-                        padding-top: 25px;
-                        padding-bottom: 25px;
+                        padding: 20px 10px 20px 15px;
+                    }
+
+                    .h3_category-item-content a {
+                        font-size: 20px;
                     }
                 </style>
 

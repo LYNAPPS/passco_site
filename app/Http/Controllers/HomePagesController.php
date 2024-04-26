@@ -78,4 +78,19 @@ class HomePagesController extends Controller
         // Return subjects as JSON response
         return response()->json(['html' => $html]);
     }
+
+    public function submitNumber()
+    {
+        return view('frontend.submit-number');
+    }
+
+    public function submitOtherDetails()
+    {
+        return view('frontend.submit-details');
+    }
+
+    public function downloadPreview()
+    {
+        return view('frontend.confirm-download');
+    }
 }

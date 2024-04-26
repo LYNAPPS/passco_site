@@ -12,15 +12,16 @@
                             Maurus herderite egret orca ac incident. Viramas at deque eu ipsum consenter commode egret t
                             dam celestas beget mi.
                         </p>
-                        <div class="h6_footer-social">
+                        {{-- <div class="h6_footer-social">
                             <ul>
                                 <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
                                 <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
                                 <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
                             </ul>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
+
                 <div class="col-xl-5 col-lg-5 col-md-7 d-flex flex-wrap flex-sm-nowrap justify-content-between">
                     <div class="h6_footer-inner">
                         <div class="h6_footer-widget mb-40">
@@ -30,41 +31,41 @@
                                     <li><a href="#">About Us</a></li>
                                     <li><a href="#">Courses</a></li>
                                     <li><a href="#">Help Centre</a></li>
-                                    <li><a href="#">News</a></li>
-                                    <li><a href="#">Contact</a></li>
+
                                 </ul>
                             </div>
                         </div>
                     </div>
+
                     <div class="h6_footer-inner">
                         <div class="h6_footer-widget mb-40">
-                            <h5 class="h6_footer-widget-title">Class</h5>
+                            <h5 class="h6_footer-widget-title">Our Links</h5>
                             <div class="h6_footer-widget-list">
                                 <ul>
-                                    <li><a href="#">Programming</a></li>
-                                    <li><a href="#">Art & Design</a></li>
-                                    <li><a href="#">Business</a></li>
-                                    <li><a href="#">Engineering</a></li>
-                                    <li><a href="#">Photography</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="h6_footer-inner">
-                        <div class="h6_footer-widget mb-40">
-                            <h5 class="h6_footer-widget-title">Support</h5>
-                            <div class="h6_footer-widget-list">
-                                <ul>
+                                    <li><a href="#">About Us</a></li>
+                                    <li><a href="#">Courses</a></li>
                                     <li><a href="#">Help Centre</a></li>
-                                    <li><a href="#">FAQ</a></li>
-                                    <li><a href="#">Contacts</a></li>
-                                    <li><a href="#">Security</a></li>
-                                    <li><a href="#">Privacy Policy</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="h6_footer-inner">
+                        <div class="h6_footer-widget mb-40">
+                            <h5 class="h6_footer-widget-title">Our Links</h5>
+                            <div class="h6_footer-widget-list">
+                                <ul>
+                                    <li><a href="#">About Us</a></li>
+                                    <li><a href="#">Courses</a></li>
+                                    <li><a href="#">Help Centre</a></li>
+
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <div class="col-xl-4 col-lg-4 col-md-5">
                     <div class="h6_footer-widget ml-80 mb-40">
                         <h5 class="h6_footer-widget-title">Newsletter</h5>
@@ -92,7 +93,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="h6_copyright-text">
-                        <p>Copyright © 2023 All Rights Reserved by Eduan</p>
+                        <p>Copyright © 2024 - {{ date('Y') }} All Rights Reserved by {{ env('APP_NAME') }}</p>
                     </div>
                 </div>
             </div>
