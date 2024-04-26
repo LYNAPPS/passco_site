@@ -16,6 +16,11 @@
         <x-dropdown-link route="subjects.create" label="Add Subject" />
     </x-dropdown>
 
+    <x-dropdown id="question_type" label="Question Types" icon="icon-book">
+        <x-dropdown-link route="question_type" label="View All" />
+        <x-dropdown-link route="question_type.create" label="Add Type" />
+    </x-dropdown>
+
     <x-dropdown id="resources" label="Resources" icon="icon-layout">
         <x-dropdown-link route="resources" label="View All" />
         <x-dropdown-link route="resoures.create" label="Add Pasco" />

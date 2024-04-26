@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminClassesController;
 use App\Http\Controllers\Admin\AdminPagesController;
 use App\Http\Controllers\Admin\AdminSubjectsController;
+use App\Http\Controllers\Admin\AdminQuestionTypeController;
 use App\Http\Controllers\Admin\ExaminationTypeController;
 use App\Http\Controllers\HomePagesController;
 use App\Http\Controllers\ProfileController;
@@ -83,6 +84,16 @@ Route::middleware('auth', 'verified')->group(function () {
         Route::controller(ResourceController::class)->group(function () {
             Route::get('/resources', 'index')->name('resources');
             Route::get('/resources_create', 'create')->name('resoures.create');
+        });
+
+        Route::controller(AdminQuestionTypeController::class)->group(function() {
+            Route::get('/type-create', 'index')->name('question_type');
+            Route::get('/type-create', 'create')->name('question_type.create');
+            Route::post('/type/store', 'store')->name('question_type.store');
+            Route::get('/type/{type}/edit', 'edit')->name('question_type.edit');
+            Route::put('/type/{type}/update', 'update')->name('question_type.update');
+
+            Route::delete('/type/{type}destory', 'destroy')->name('question_type.destroy');
         });
     });
 
