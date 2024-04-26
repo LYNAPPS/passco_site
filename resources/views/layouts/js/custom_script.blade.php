@@ -70,3 +70,47 @@
         $('.alert_dismis').delay(5000).fadeOut('slow');
     });
 </script>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const examIdInput = document.getElementById('exam_id');
+
+        // Fetch subjects function
+        function fetchSubjects() {
+            const examId = examIdInput.value;
+
+
+            fetch(`/get-subjects?exam_id=${examId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const subjectsDropdown = document.getElementById('subject_id');
+                    subjectsDropdown.innerHTML = '<option>Select subject</option>';
+
+                    // Loop through fetched subjects and append options to the dropdown
+                    data.forEach(subject => {
+                        const option = document.createElement('option');
+                        option.value = subject.id;
+                        option.textContent = subject.name;
+                        subjectsDropdown.appendChild(option);
+                    });
+
+                    // Set the old selected subject if available
+                    const oldsubjectId = "{{ old('subject_id') }}";
+                    if (oldsubjectId) {
+                        subjectsDropdown.value = oldsubjectId;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching subjects:', error);
+                });
+        }
+
+        // Event listeners
+        examIdInput.addEventListener('change', fetchSubjects);
+
+        // Fetch subjects on page load if old values are available
+        fetchSubjects();
+    });
+</script>
