@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\ExamType;
+use App\Models\Resource;
+use App\Models\Student;
+use App\Models\StudentResource;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -79,18 +82,26 @@ class HomePagesController extends Controller
         return response()->json(['html' => $html]);
     }
 
-    public function submitNumber()
+    public function submitNumber(Resource $resource)
     {
-        return view('frontend.submit-number');
+        $resourceID = $resource->id;
+        return view('frontend.submit-number', compact('resourceID'));
     }
 
-    public function submitOtherDetails()
+    public function submitOtherDetails(Student $student, $token)
     {
-        return view('frontend.submit-details');
+        $studentID = $student->id;
+        return view('frontend.submit-details', compact('studentID', 'token'));
     }
 
-    public function downloadPreview()
+    public function downloadPreview(Student $student, $token)
     {
-        return view('frontend.confirm-download');
+        // $resource = StudentResource::findOrFail($token);
+        $resource = StudentResource::where('download_token', $token)->first();
+        $relatedResource = $resource->resource;
+        // dd($relatedResource);
+        $relatedStudent = $resource->student;
+
+        return view('frontend.confirm-download', compact('resource', 'relatedResource', 'relatedStudent'));
     }
 }

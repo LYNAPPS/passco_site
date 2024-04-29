@@ -7,6 +7,7 @@
                     <label>Your Phone Number</label>
                 </div>
                 <div class="account-form-input">
+                    <input type="hidden" value="{{ $resourceID }}" name="resourceID">
                     <input type="text" placeholder="Enter Your Phone Number" name="student_phone_number"
                         class="form-control @error('student_phone_number') is-invalid @enderror"
                         value="{{ old('student_phone_number') }}" maxlength="13">

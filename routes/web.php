@@ -36,13 +36,15 @@ Route::middleware(['visitor'])->group(function () {
         Route::get('/{slug}/{id}/view-library', 'viewExamLibrary')->name('view-exams-library');
         Route::get('/exams/{examType}/content', 'fetchContent')->name('exams.content');
         Route::get('/subjects/all', 'fetchAllSubjects')->name('exams.content');
-        Route::get('/download/step-one/{id}', 'submitNumber')->name('submit.phone');
-        Route::get('/download/step-two', 'submitOtherDetails')->name('submit.details');
-        Route::get('/download/preview', 'downloadPreview')->name('submit.details');
+        Route::get('/download/step-one/{resource}', 'submitNumber')->name('submit.phone');
+        Route::get('/download/step-two/{student}/{token}', 'submitOtherDetails')->name('submit.details');
+        Route::get('/download/preview/{student}/{token}', 'downloadPreview')->name('preview.download');
     });
 
     Route::controller(DownloadResourceController::class)->group(function () {
         Route::post('/save-phone-number', 'savePhoneNumber')->name('save-phone-number');
+        Route::post('/save-student-details', 'saveStudentDetails')->name('save-student-detials');
+        Route::post('/sms-requested', 'smsRequestSent')->name('sms-student-request');
     });
 });
 
