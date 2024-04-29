@@ -8,4 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Resource extends Model
 {
     use HasFactory;
+
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class, 'subject_id');
+    }
+
+    public function examType()
+    {
+        return $this->belongsTo(ExamType::class, 'exam_type_id');
+    }
+
+    public function questionType()
+    {
+        return $this->belongsTo(QuestionType::class, 'question_type_id');
+    }
 }

@@ -13,7 +13,7 @@
             @if ($subject->examType)
                 <span style="color: red;">({{ $subject->examType->short_name }})</span>
             @endif
-            <p>34k Question</p>
+            <p>{{ $subject->resource->count() }} Question</p>
         </div>
     </div>
 </div>

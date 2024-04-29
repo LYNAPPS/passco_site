@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminPagesController;
 use App\Http\Controllers\Admin\AdminSubjectsController;
 use App\Http\Controllers\Admin\AdminQuestionTypeController;
 use App\Http\Controllers\Admin\ExaminationTypeController;
+use App\Http\Controllers\DownloadResourceController;
 use App\Http\Controllers\HomePagesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResourceController;
@@ -35,9 +36,13 @@ Route::middleware(['visitor'])->group(function () {
         Route::get('/{slug}/{id}/view-library', 'viewExamLibrary')->name('view-exams-library');
         Route::get('/exams/{examType}/content', 'fetchContent')->name('exams.content');
         Route::get('/subjects/all', 'fetchAllSubjects')->name('exams.content');
-        Route::get('/download/step-one', 'submitNumber')->name('submit.phone');
+        Route::get('/download/step-one/{id}', 'submitNumber')->name('submit.phone');
         Route::get('/download/step-two', 'submitOtherDetails')->name('submit.details');
         Route::get('/download/preview', 'downloadPreview')->name('submit.details');
+    });
+
+    Route::controller(DownloadResourceController::class)->group(function () {
+        Route::post('/save-phone-number', 'savePhoneNumber')->name('save-phone-number');
     });
 });
 

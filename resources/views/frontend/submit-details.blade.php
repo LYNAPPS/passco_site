@@ -6,7 +6,7 @@
                     <label>Your Full Name</label>
                 </div>
                 <div class="account-form-input">
-                    <input type="text" placeholder="Enter Your Full Name">
+                    <input type="text" placeholder="Enter Your Full Name" name="student_name">
                 </div>
             </div>
 
@@ -15,11 +15,11 @@
                     <label>Your Level</label>
                 </div>
                 <div class="account-form-input">
-                    <select class="form-control">
+                    <select class="form-control" name="student_level">
                         <option value="">Select Your Level</option>
-                        <option value="">Form 1</option>
-                        <option value="">Form 2</option>
-                        <option value="">Form 3</option>
+                        <option value="1">Form 1</option>
+                        <option value="2">Form 2</option>
+                        <option value="3">Form 3</option>
                     </select>
                 </div>
             </div>

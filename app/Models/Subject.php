@@ -26,4 +26,9 @@ class Subject extends Model
     {
         return $this->belongsTo(ExamType::class, 'exam_type_id');
     }
+
+    public function resource()
+    {
+        return $this->hasMany(Resource::class);
+    }
 }

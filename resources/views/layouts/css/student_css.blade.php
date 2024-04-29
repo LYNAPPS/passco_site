@@ -11,3 +11,15 @@
 <link rel="stylesheet" href="{{ url('assets/frontend/css/meanmenu.css') }}">
 <link rel="stylesheet" href="{{ url('assets/frontend/css/swiper-bundle.min.css') }}">
 <link rel="stylesheet" href="{{ url('assets/frontend/css/main.css') }}">
+
+<style>
+    .is-invalid {
+        border-color: #dc3545 !important;
+        /* Red border color */
+    }
+
+    .invalid-feedback {
+        color: #dc3545;
+        /* Red text color */
+    }
+</style>

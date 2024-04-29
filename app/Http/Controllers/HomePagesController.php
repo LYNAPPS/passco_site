@@ -46,9 +46,9 @@ class HomePagesController extends Controller
             abort(404);
         }
 
-        $pasco = $subject->pasco;
+        $resources = $subject->resource;
 
-        return view('frontend.view-pasco', compact('pasco', 'subject'));
+        return view('frontend.view-pasco', compact('resources', 'subject'));
     }
 
     public function allSubjects()
