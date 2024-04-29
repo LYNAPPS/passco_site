@@ -45,6 +45,10 @@ Route::middleware(['visitor'])->group(function () {
         Route::post('/save-phone-number', 'savePhoneNumber')->name('save-phone-number');
         Route::post('/save-student-details', 'saveStudentDetails')->name('save-student-detials');
         Route::post('/sms-requested', 'smsRequestSent')->name('sms-student-request');
+
+        //
+
+        Route::get('/download-resource/{token}', 'verifyLink')->name('verify-token');
     });
 });
 

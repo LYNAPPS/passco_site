@@ -87,45 +87,23 @@ class DownloadResourceController extends Controller
         return redirect()->route('preview.download', ['student' => $request->student_id, 'token' => $request->resource_id]);
     }
 
+    public function verifyLink(Request $request)
+    {
+        dd($request->token);
+    }
+
     public function smsRequestSent(Request $request)
     {
-        // SmsHelper::sendSms();
-        $messageData = [
-            'username' => 'johnny',
-            'password' => 'Johnny@doe2000',
-            'senderid' => 'PASCO',
-            'message' => 'Hello World',
-            'service' => 'SMS',
-            'smstype' => 'text',
-            'subject' => 'Message Subject',
-            'destinations' => [
-                [
-                    'destination' => '0244086787',
-                    'msgid' => 101
-                ]
-            ]
-        ];
+        $studentResource = StudentResource::findOrFail($request->resource_id);
 
-        try {
-            $response = Http::withHeaders([
-                "Content-Type" => "application/json"
-            ])->post("https://frog.wigal.com.gh/api/v2/sendmsg", $messageData);
+        $student = $studentResource->student;
 
+        $url = $studentResource->download_token;
 
-            if ($response->successful()) {
-                $responseBody = $response->json();
-                dd($responseBody);
-                if ($responseBody['status'] === 'ACCEPTED') {
-                    return response()->json(['message' => 'Message accepted for sending']);
-                } else {
-                    return response()->json(['error' => 'Message could not be sent'], 400);
-                }
-            } else {
-                return response()->json(['error' => 'Failed to send message'], 500);
-            }
-        } catch (Exception $e) {
-            Log::error("Error: " . $e->getMessage());
-        }
+        $customMessage = "You have requested access to download a resource from " . env('APP_NAME') . ". Please find the download link below:" . "\n\n" . $url . "\n\nThis link will expire in 30 minutes. Please make sure to download the resource within this time frame. \n Thank you for using our service.";
+
+        SmsHelper::sendSms($student, $customMessage);
+
 
         // dd($request);
     }
