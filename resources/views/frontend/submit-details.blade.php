@@ -2,8 +2,8 @@
     <x-form-section>
         <form action="{{ route('save-student-detials') }}" method="post" class="account-form">
             @csrf
-            <input type="text" name="student_id" id="student_id" value="{{ $studentID }}">
-            <input type="text" name="resource_id" id="resource_id" value="{{ $token }}">
+            <input type="hidden" name="student_id" id="student_id" value="{{ $studentID }}">
+            <input type="hidden" name="resource_id" id="resource_id" value="{{ $token }}">
             <div class="account-form-item mb-20">
                 <div class="account-form-label">
                     <label>Your Full Name</label>
