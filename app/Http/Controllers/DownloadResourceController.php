@@ -9,6 +9,7 @@ use App\Models\StudentResource;
 use App\Services\StudentResourceRequest;
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -89,8 +90,22 @@ class DownloadResourceController extends Controller
 
     public function verifyLink(Request $request)
     {
-        dd($request->token);
+
+        $resource = StudentResource::where('download_token', $request->token)->first();
+        if ($resource) {
+            $file = $resource->resource;
+
+            $expirationDate = Carbon::parse($resource->expires_at);
+            if ($expirationDate->isFuture()) {
+                return view('download-page', compact('resource', 'file'));
+            } else {
+                return view('invalid-token', compact('resource'));
+            }
+        } else {
+            return view('token-not-found', compact('resource'));
+        }
     }
+
 
     public function smsRequestSent(Request $request)
     {
@@ -98,13 +113,23 @@ class DownloadResourceController extends Controller
 
         $student = $studentResource->student;
 
-        $url = $studentResource->download_token;
+        // Generate URL with token
+        $url = URL::signedRoute('verify-token', ['token' => $studentResource->download_token]);
 
+        // Construct custom message with the URL
         $customMessage = "You have requested access to download a resource from " . env('APP_NAME') . ". Please find the download link below:" . "\n\n" . $url . "\n\nThis link will expire in 30 minutes. Please make sure to download the resource within this time frame. \n Thank you for using our service.";
 
-        SmsHelper::sendSms($student, $customMessage);
-
-
-        // dd($request);
+        // Send SMS
+        $sendLink = SmsHelper::sendSms($student, $customMessage);
+        if ($sendLink->successful()) {
+            $responseBody = $sendLink->json();
+            if ($responseBody['status'] === 'ACCEPTED') {
+                return redirect()->back()->with(['success' => 'Message accepted for sending']);
+            } else {
+                return redirect()->back()->with(['error' => 'Message could not be sent'], 400);
+            }
+        } else {
+            return redirect()->back()->with(['error' => 'Failed to send message'], 500);
+        }
     }
 }

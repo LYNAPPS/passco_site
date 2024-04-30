@@ -83,9 +83,13 @@ class ResourceController extends Controller
 
         $questionFilePath = $request->file('question_file')->storeAs('public/question_files', $questionFileName);
 
+        // Remove the 'public/' prefix before saving to the database
+        $cleanedFilePath = str_replace('public/', '', $questionFilePath);
+
         // Update the resource record with file paths
-        $resource->file_path = $questionFilePath;
+        $resource->file_path = $cleanedFilePath;
         $resource->save();
+
 
         $saveAnswer = $this->storeResourceAnswer($resource, $answerFileName, $answerFile);
 
@@ -95,10 +99,12 @@ class ResourceController extends Controller
     private function storeResourceAnswer($resource, $answerFileName, $answerFile)
     {
         $answerFilePath = $answerFile->storeAs('public/answer_files', $answerFileName);
+        $cleanedFilePath = str_replace('public/', '', $answerFilePath);
+
 
         $answer = new ResourceAnswer();
         $answer->resource_id = $resource->id;
-        $answer->file_path = $answerFilePath;
+        $answer->file_path = $cleanedFilePath;
         $answer->save();
 
         return true;

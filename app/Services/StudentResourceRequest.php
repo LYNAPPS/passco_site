@@ -18,7 +18,7 @@ class StudentResourceRequest
 
         // Generate download token and set expiration date
         $downloadToken = Str::random(40);
-        $expirationDate = Carbon::now()->addHours(24);
+        $expirationDate = Carbon::now()->addMinutes(30);
 
         // Create student resource record
         $studentResource = new StudentResource();
