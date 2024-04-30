@@ -23,4 +23,9 @@ class Resource extends Model
     {
         return $this->belongsTo(QuestionType::class, 'question_type_id');
     }
+
+    public function category()
+    {
+        return $this->belongsTo(ExamCategory::class, 'exam_category_id');
+    }
 }

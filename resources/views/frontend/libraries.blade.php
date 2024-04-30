@@ -1,6 +1,6 @@
 <x-app-layout>
     <!-- career area start -->
-    <section class="h8_about-area pt-110 pb-70">
+    {{-- <section class="h8_about-area pt-110 pb-70">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
@@ -43,12 +43,12 @@
 
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- career area end -->
 
 
     <!-- category area start -->
-    <section class="h4_category-area pt-110 pb-70">
+    {{-- <section class="h4_category-area pt-110 pb-70">
         <div class="container">
 
             <div class="row align-items-end mb-30">
@@ -79,6 +79,9 @@
 
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- category area end -->
+
+    <x-subject-list />
+
 </x-app-layout>

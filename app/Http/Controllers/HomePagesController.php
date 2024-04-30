@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ExamCategory;
 use App\Models\ExamType;
 use App\Models\Resource;
 use App\Models\Student;
@@ -41,18 +42,16 @@ class HomePagesController extends Controller
     }
 
 
-    public function viewSubjectPasco($slug, $id)
+    public function viewSubjectPasco($id)
     {
-        $subject = Subject::findOrFail($id);
+        $category = ExamCategory::findOrFail($id);
 
-        if ($subject->slug !== $slug) {
-            abort(404);
-        }
-
-        $resources = $subject->resource;
-
-        return view('frontend.view-pasco', compact('resources', 'subject'));
+        $resources = $category->resource;
+        $subjects = $category->examType->subjects;
+        return view('frontend.view-pasco', compact('resources', 'category', 'subjects', 'id'));
     }
+
+
 
     public function allSubjects()
     {
@@ -62,11 +61,9 @@ class HomePagesController extends Controller
     public function fetchContent($examType)
     {
 
-        $examType = ExamType::findOrFail($examType);
-        $subjects = $examType->subjects()->get();
+        $categories = ExamCategory::where('exam_type_id', $examType)->get();
 
-
-        $html = view('partials.subjects', ['subjects' => $subjects])->render();
+        $html = view('partials.subjects', ['subjects' => $categories])->render();
 
         return response()->json(['html' => $html]);
     }
@@ -74,9 +71,9 @@ class HomePagesController extends Controller
     public function fetchAllSubjects()
     {
         // Fetch all subjects
-        $subjects = Subject::all();
+        $categories = ExamCategory::all();
 
-        $html = view('partials.subjects', ['subjects' => $subjects])->render();
+        $html = view('partials.subjects', ['subjects' => $categories])->render();
 
         // Return subjects as JSON response
         return response()->json(['html' => $html]);

@@ -14,4 +14,9 @@ class ExamType extends Model
     {
         return $this->hasMany(Subject::class);
     }
+
+    public function categories()
+    {
+        return $this->hasMany(ExamCategory::class);
+    }
 }

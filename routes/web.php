@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AdminQuestionTypeController;
 use App\Http\Controllers\Admin\ExaminationTypeController;
 use App\Http\Controllers\DownloadResourceController;
 use App\Http\Controllers\ExamCategroyController;
+use App\Http\Controllers\FilterController;
 use App\Http\Controllers\HomePagesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResourceController;
@@ -33,13 +34,18 @@ Route::middleware(['visitor'])->group(function () {
         Route::get('/', 'index')->name('homepage');
         Route::get('/libraries', 'libraries')->name('libraries');
         Route::get('/all-subjects', 'allSubjects')->name('subjects-all');
-        Route::get('/{slug}/{id}/pasco-all', 'viewSubjectPasco')->name('view-subject-pasco');
+        Route::get('/{id}/pasco-all', 'viewSubjectPasco')->name('view-subject-pasco');
         Route::get('/{slug}/{id}/view-library', 'viewExamLibrary')->name('view-exams-library');
         Route::get('/exams/{examType}/content', 'fetchContent')->name('exams.content');
         Route::get('/subjects/all', 'fetchAllSubjects')->name('exams.content');
         Route::get('/download/step-one/{resource}', 'submitNumber')->name('submit.phone');
         Route::get('/download/step-two/{student}/{token}', 'submitOtherDetails')->name('submit.details');
         Route::get('/download/preview/{student}/{token}', 'downloadPreview')->name('preview.download');
+    });
+
+    Route::controller(FilterController::class)->group(function () {
+        Route::get('/load-initial-resources', 'fetchFilteredResources')->name('load-initial-resources');
+        Route::get('/filter-resources', 'filterResources')->name('filter-resources');
     });
 
     Route::controller(DownloadResourceController::class)->group(function () {
@@ -109,6 +115,7 @@ Route::middleware('auth', 'verified')->group(function () {
             Route::get('/resources_create', 'create')->name('resoures.create');
             Route::post('/resources_create', 'storeResource')->name('resoures.store');
             Route::get('/get-subjects', 'getCourses')->name('get-courses');
+            Route::get('/get-categories', 'getCategory')->name('get-categories');
         });
 
         Route::controller(AdminQuestionTypeController::class)->group(function () {

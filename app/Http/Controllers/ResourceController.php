@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ExamCategory;
 use App\Models\ExamType;
+use App\Models\Level;
 use App\Models\QuestionType;
 use App\Models\Resource;
 use App\Models\ResourceAnswer;
@@ -23,17 +25,21 @@ class ResourceController extends Controller
     {
         $exams = ExamType::all();
         $subjects = Subject::all();
+        $levels = Level::all();
         $QuestionType = QuestionType::all();
-        return view('resources.create', compact('exams', 'subjects', 'QuestionType'));
+        return view('resources.create', compact('exams', 'subjects', 'QuestionType', 'levels'));
     }
 
     public function storeResource(Request $request)
     {
 
         $validator = Validator::make($request->all(), [
-            'exam_id' => 'required|exists:exam_types,id',
+            'level_id' => 'required|exists:levels,id',
+            'exam_category_id' => 'required|exists:exam_categories,id',
+            'exam_type_id' => 'required|exists:exam_types,id',
             'subject_id' => 'required|exists:subjects,id',
             'question_type' => 'required|exists:question_types,id',
+
             'question_file' => 'required|file|mimes:pdf|max:20240',
             'answer_file' => 'required|file|mimes:pdf|max:20240',
             'exam_year' => 'required|integer|between:2000,' . now()->year,
@@ -47,9 +53,11 @@ class ResourceController extends Controller
         }
 
         $resourceExists = Resource::where([
-            'exam_type_id' => $request->exam_id,
+            'exam_type_id' => $request->exam_type_id,
             'subject_id' => $request->subject_id,
             'question_type_id' => $request->question_type,
+            'level_id' => $request->level_id,
+            'exam_category_id' => $request->exam_category_id,
             'exam_year' => $request->exam_year,
         ])->exists();
 
@@ -59,21 +67,23 @@ class ResourceController extends Controller
                 ->with('warning', 'Resource already exists for the selected exam, subject, question type, and year. Please upload a different file.');
         }
 
-        $examType = ExamType::find($request->exam_id);
+        $examType = ExamType::find($request->exam_type_id);
         $subject = Subject::find($request->subject_id);
         $questionType = QuestionType::find($request->question_type);
         $uniqueId = uniqid();
         $answerFile = $request->file('answer_file');
+
         // Construct file names
         $questionFileName = $examType->short_name . '_' . $subject->slug . '_' . $questionType->name . '_' . $request->exam_year . '_' . 'question' . '_' .  $uniqueId . '.pdf';
         $answerFileName = $examType->short_name . '_' . $subject->slug . '_' . $questionType->name . '_' . $request->exam_year . '_' . 'answer' . '_'  . $uniqueId . '.pdf';
 
         // Create a new resource record
         $resource = new Resource();
-        $resource->exam_type_id = $request->exam_id;
+        $resource->level_id = $request->level_id;
+        $resource->exam_type_id = $request->exam_type_id;
+        $resource->exam_category_id = $request->exam_category_id;
         $resource->subject_id = $request->subject_id;
         $resource->question_type_id = $request->question_type;
-        $resource->question_type = $request->question_type;
         $resource->exam_year = $request->exam_year;
         $resource->file_path = '';
 
@@ -112,9 +122,19 @@ class ResourceController extends Controller
 
     public function getCourses(Request $request)
     {
-        $examId = $request->input('exam_id');
+        $examId = $request->input('exam_type_id');
 
         $subjects = Subject::where('exam_type_id', $examId)
+            ->get();
+
+        return response()->json($subjects);
+    }
+
+    public function getCategory(Request $request)
+    {
+        $examId = $request->input('exam_type_id');
+
+        $subjects = ExamCategory::where('exam_type_id', $examId)
             ->get();
 
         return response()->json($subjects);

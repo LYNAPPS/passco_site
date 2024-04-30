@@ -1,11 +1,10 @@
 <!-- course area start -->
-<section class="h10_course-area pt-130 pb-110">
+<section class="h4_category-area pt-130 pb-110">
     <div class="container">
         <div class="row align-items-end mb-10">
             <div class="col-xl-5 col-lg-6">
                 <div class="section-area-10 mb-40">
-                    <h2 class="section-title mb-0">Explore Our
-                        Popular Courses</h2>
+                    <h2 class="section-title mb-0">Library</h2>
                 </div>
             </div>
 
@@ -38,24 +37,6 @@
         </div>
         <div class="h10_course-wrap">
             <div class="tab-content" id="pills-tabContent">
-                {{-- <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
-                    tabindex="0">
-                    <div class="row">
-                        @foreach ($exams as $exam)
-                            @if ($exam->subjects->isEmpty())
-                                <div class="alert alert-warning" role="alert">
-                                    There are currently no subjects available for this exam type. Please check back
-                                    later.
-                                </div>
-                            @else
-                                @foreach ($exam->subjects as $subject)
-                                    <!-- Include the subject card component -->
-                                    <x-subject-card :subject="$subject" />
-                                @endforeach
-                            @endif
-                        @endforeach
-                    </div>
-                </div> --}}
 
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
                     tabindex="0">
