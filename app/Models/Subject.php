@@ -10,7 +10,7 @@ class Subject extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'exam_type_id', 'slug'];
+    protected $fillable = ['level_id', 'name', 'exam_type_id', 'slug'];
 
     protected static function boot()
     {

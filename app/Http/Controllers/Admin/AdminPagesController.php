@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\GreetingController;
+use App\Models\ExamCategory;
 use App\Models\ExamType;
 use App\Models\Level;
 use App\Models\Subject;
@@ -49,5 +50,11 @@ class AdminPagesController extends Controller
         session(['user_timezone' => $timezone]);
 
         return response()->json(['message' => 'User timezone saved successfully']);
+    }
+
+    public function examsCategory()
+    {
+        $categories = ExamCategory::all();
+        return view('category.index', compact('categories'));
     }
 }

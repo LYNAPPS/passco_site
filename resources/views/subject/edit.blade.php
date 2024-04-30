@@ -9,30 +9,44 @@
                         enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
-                        <div class="form-group">
-                            <label for="name">Subject Name</label>
-                            <input type="text" class="form-control" id="name" name="name"
-                                placeholder="English Language" value="{{ old('name', $subject->name) }}">
-                            @error('name')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
 
-                        {{-- <div class="form-group">
-                            <label for="level">Select Class</label>
-                            <select name="level_id" id="level_id" class="form-control">
-                                <option value="">Select A Class</option>
-                                @foreach ($levels as $level)
-                                    <option value="{{ $level->id }}"
-                                        {{ $level->id == $subject->level_id ? 'selected' : '' }}>
-                                        {{ $level->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            @error('level_id')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div> --}}
+
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label for="exam">Select Level</label>
+                                <select name="level_id" id="level_id" class="form-control" required>
+                                    <option value="">Select A Level</option>
+                                    @foreach ($levels as $level)
+                                        <option value="{{ $level->id }}"
+                                            {{ old('level_id', $subject->level_id) == $level->id ? 'selected' : '' }}>
+                                            {{ $level->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('level_id')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+
+                            <div class="form-group col-sm-6">
+                                <label for="subject">Select Exams Type</label>
+                                <select name="exam_type_id" id="exam_type_id" class="form-control" required>
+                                    <option value="">Select A Level</option>
+
+                                </select>
+                            </div>
+
+
+                            <div class="form-group col-sm-12">
+                                <label for="name">Subject Name</label>
+                                <input type="text" class="form-control" id="name" name="name"
+                                    placeholder="English Language" value="{{ old('name', $subject->name) }}">
+                                @error('name')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
 
                         <button type="submit" class="btn btn-primary mr-2">Update</button>
                     </form>

@@ -16,15 +16,24 @@ class AdminSubjectsController extends Controller
     public function create()
     {
         $exams = ExamType::all();
-        return view('subject.create', compact('exams'));
+        $levels = Level::all();
+
+        return view('subject.create', compact('exams', 'levels'));
     }
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'level_id' => 'required|exists:levels,id',
             'exam_type_id' => 'required|exists:exam_types,id',
+            'name' => 'required|string|max:255',
         ]);
         $data = $request->except(['_token']);
+
+        $subjectExist = Subject::where('level_id', $request->level_id)->where('exam_type_id', $request->exam_type_id)->where('name', $request->name)->first();
+        if (!$subjectExist == null) {
+            return redirect()->back()->with('error', 'Subject is already in the system for this level and exam type.');
+        }
+
 
         Subject::create($data);
 
@@ -33,15 +42,16 @@ class AdminSubjectsController extends Controller
 
     public function edit(Subject $subject)
     {
-        // $levels = Level::all();
-        return view('subject.edit', compact('subject'));
+        $levels = Level::all();
+        return view('subject.edit', compact('subject', 'levels'));
     }
 
     public function update(Request $request, Subject $subject)
     {
         $request->validate([
+            'level_id' => 'required|exists:levels,id',
+            'exam_type_id' => 'required|exists:exam_types,id',
             'name' => 'required|string|max:255',
-            // 'level_id' => 'required|exists:levels,id',
         ]);
 
         $subject->update($request->all());

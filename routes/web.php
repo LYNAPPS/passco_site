@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminSubjectsController;
 use App\Http\Controllers\Admin\AdminQuestionTypeController;
 use App\Http\Controllers\Admin\ExaminationTypeController;
 use App\Http\Controllers\DownloadResourceController;
+use App\Http\Controllers\ExamCategroyController;
 use App\Http\Controllers\HomePagesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResourceController;
@@ -60,6 +61,7 @@ Route::middleware('auth', 'verified')->group(function () {
             Route::get('/classes', 'levels')->name('levels.index');
             Route::get('/subjects', 'subjects')->name('subjects.index');
             Route::get('/exams-types', 'examsTypes')->name('exams.index');
+            Route::get('/exams-category', 'examsCategory')->name('category.index');
 
             Route::post('/update-timezone', 'getUserTimezone')->name('get-user-timezone');
         });
@@ -71,6 +73,16 @@ Route::middleware('auth', 'verified')->group(function () {
             Route::put('/exams/{examType}', 'update')->name('exams.update');
 
             Route::delete('/exams/{examType}', 'destroy')->name('exams.destroy');
+        });
+
+        Route::controller(ExamCategroyController::class)->group(function () {
+            Route::get('/category-types/create', 'create')->name('category.create');
+            Route::post('/category-types/store', 'store')->name('category.store');
+            Route::get('/category/{examCat}/edit', 'edit')->name('category.edit');
+            Route::put('/category/{examCat}', 'update')->name('category.update');
+
+            Route::delete('/category/{examCat}', 'destroy')->name('category.destroy');
+            Route::get('/get-examtypes', 'getExamType')->name('get-courses');
         });
 
         Route::controller(AdminClassesController::class)->group(function () {

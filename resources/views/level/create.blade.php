@@ -10,7 +10,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="name">Class Name</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="JHS 1"
+                            <input type="text" class="form-control" id="name" name="name" placeholder="JHS"
                                 value="{{ old('name') }}">
                             @error('name')
                                 <div class="text-danger">{{ $message }}</div>

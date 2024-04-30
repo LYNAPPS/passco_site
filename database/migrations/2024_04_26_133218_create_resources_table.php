@@ -13,12 +13,16 @@ return new class extends Migration
     {
         Schema::create('resources', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('level_id');
             $table->unsignedBigInteger('exam_type_id');
+            $table->unsignedBigInteger('exam_category_id');
             $table->unsignedBigInteger('subject_id');
             $table->unsignedBigInteger('question_type_id');
-            $table->string('file_path'); 
+            $table->string('file_path');
             $table->timestamps();
+            $table->foreign('level_id')->references('id')->on('levels')->onDelete('cascade');
             $table->foreign('exam_type_id')->references('id')->on('exam_types')->onDelete('cascade');
+            $table->foreign('exam_category_id')->references('id')->on('exam_categories')->onDelete('cascade');
             $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
             $table->foreign('question_type_id')->references('id')->on('question_types')->onDelete('cascade');
         });

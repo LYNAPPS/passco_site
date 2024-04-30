@@ -114,3 +114,46 @@
         fetchSubjects();
     });
 </script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const levelIdInput = document.getElementById('level_id');
+
+        // Fetch subjects function
+        function fetchExamTypes() {
+            const levelId = levelIdInput.value;
+
+
+            fetch(`/get-examtypes?level_id=${levelId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const subjectsDropdown = document.getElementById('exam_type_id');
+                    subjectsDropdown.innerHTML = '<option>Select Exam Type</option>';
+
+                    // Loop through fetched subjects and append options to the dropdown
+                    data.forEach(subject => {
+                        const option = document.createElement('option');
+                        option.value = subject.id;
+                        option.textContent = subject.name;
+                        subjectsDropdown.appendChild(option);
+                    });
+
+                    // Set the old selected subject if available
+                    const oldsubjectId = "{{ old('exam_type_id') }}";
+                    if (oldsubjectId) {
+                        subjectsDropdown.value = oldsubjectId;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching Exam Types:', error);
+                });
+        }
+
+        // Event listeners
+        levelIdInput.addEventListener('change', fetchExamTypes);
+
+        // Fetch subjects on page load if old values are available
+        fetchExamTypes();
+    });
+</script>
