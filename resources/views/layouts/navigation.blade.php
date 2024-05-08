@@ -28,7 +28,7 @@
                 <div class="col-xxl-5 col-xl-3 col-lg-5 col-6">
                     <div class="h8_header-right">
                         <div class="h8_header-action d-none d-sm-flex">
-                            <a href="#" class="h8_header-login">
+                            {{-- <a href="#" class="h8_header-login">
                                 <svg width="14" height="16" viewBox="0 0 14 16" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -41,11 +41,11 @@
                                         stroke-linejoin="round" />
                                 </svg>
                                 Login
-                            </a>
+                            </a> --}}
                             <a href="#" class="h8_header-btn theme-btn theme-btn-8">
                                 Get in Touch
                             </a>
-                            <a href="#" class="h8_header-search"><i class="fa-light fa-magnifying-glass"></i></a>
+                            {{-- <a href="#" class="h8_header-search"><i class="fa-light fa-magnifying-glass"></i></a> --}}
                         </div>
                         <div class="header-menu-bar h8_menu-bar d-xl-none ml-10">
                             <span class="header-menu-bar-icon side-toggle">
