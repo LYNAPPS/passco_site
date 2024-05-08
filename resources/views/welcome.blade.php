@@ -11,14 +11,15 @@
                                 educational resources, all designed to help students excel in their studies.</p>
 
                             <div class="h10_banner-content-btn mb-60">
-                                <a href="#" class="theme-btn theme-btn-10 theme-btn-10-transparent">Get Started<i
+                                <a href="{{ route('libraries') }}"
+                                    class="theme-btn theme-btn-10 theme-btn-10-transparent">Get Started<i
                                         class="fa-light fa-arrow-right"></i></a>
                             </div>
-                            <div class="h10_banner-bottom-info">
+                            {{-- <div class="h10_banner-bottom-info">
                                 <span><i class="fa-light fa-book"></i>4k + Question</span>
                                 <span><i class="fa-light fa-users"></i>18k Total Student</span>
                                 <span><i class="fa-light fa-file-lines"></i>100+ Courses</span>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <div class="col-xxl-5 col-xl-6 col-lg-6">
