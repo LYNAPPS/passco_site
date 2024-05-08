@@ -1,6 +1,6 @@
 <!-- footer area start -->
 <footer class="h6_footer-area h10_footer-area">
-    <div class="footer-top pt-100 pb-30">
+    {{-- <div class="footer-top pt-100 pb-30">
         <div class="container">
             <div class="row justify-content-between">
                 <div class="col-xl-3 col-lg-3 col-md-5">
@@ -12,13 +12,6 @@
                             Maurus herderite egret orca ac incident. Viramas at deque eu ipsum consenter commode egret t
                             dam celestas beget mi.
                         </p>
-                        {{-- <div class="h6_footer-social">
-                            <ul>
-                                <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
-                            </ul>
-                        </div> --}}
                     </div>
                 </div>
 
@@ -87,7 +80,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="h6_copyright-area">
         <div class="container">
             <div class="row">

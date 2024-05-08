@@ -32,4 +32,21 @@ class FilterController extends Controller
 
         return response()->json(['html' => $html]);
     }
+
+
+    public function fetchFilteredAnswer(Request $request)
+    {
+        $id = $request->query('id');
+
+        $html = $this->resourceService->loadInitialAnswer($id);
+
+        return response()->json(['html' => $html]);
+    }
+
+    public function filterAnswer(Request $request)
+    {
+        $html = $this->resourceService->loadFilteredAnswer($request);
+
+        return response()->json(['html' => $html]);
+    }
 }

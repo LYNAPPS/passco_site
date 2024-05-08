@@ -28,6 +28,16 @@ class HomePagesController extends Controller
         return view('frontend.libraries', compact('exams', 'subjects'));
     }
 
+
+    public function answerLibraries()
+    {
+        $exams = ExamType::all();
+        $subjects = Subject::with('examType')->take(8)->get();
+
+
+        return view('frontend.answer-libraries', compact('exams', 'subjects'));
+    }
+
     public function viewExamLibrary($slug, $id)
     {
         $exam = ExamType::findOrFail($id);
@@ -50,6 +60,17 @@ class HomePagesController extends Controller
         $subjects = $category->examType->subjects;
         return view('frontend.view-pasco', compact('resources', 'category', 'subjects', 'id'));
     }
+
+    public function viewAnswerPasco($id)
+    {
+        $category = ExamCategory::findOrFail($id);
+
+        $resources = $category->resource;
+        $subjects = $category->examType->subjects;
+        return view('frontend.view-answer', compact('resources', 'category', 'subjects', 'id'));
+    }
+
+
 
 
 
@@ -78,6 +99,53 @@ class HomePagesController extends Controller
         // Return subjects as JSON response
         return response()->json(['html' => $html]);
     }
+
+
+    public function fetchContentAnswer($examType)
+    {
+
+        $categories = ExamCategory::where('exam_type_id', $examType)->get();
+
+        $html = view('partials.answers', ['subjects' => $categories])->render();
+
+        return response()->json(['html' => $html]);
+    }
+
+    public function fetchAllAnswer()
+    {
+        // Fetch all subjects
+        $categories = ExamCategory::all();
+
+        $html = view('partials.answers', ['subjects' => $categories])->render();
+
+        // Return subjects as JSON response
+        return response()->json(['html' => $html]);
+    }
+
+
+    public function fetchAnswerContent($examType)
+    {
+
+        $categories = ExamCategory::where('exam_type_id', $examType)->get();
+
+        $html = view('partials.answers', ['subjects' => $categories])->render();
+
+        return response()->json(['html' => $html]);
+    }
+
+    public function fetchAnswerAllSubjects()
+    {
+        // Fetch all subjects
+        $categories = ExamCategory::all();
+
+        $html = view('partials.answers', ['subjects' => $categories])->render();
+
+        // Return subjects as JSON response
+        return response()->json(['html' => $html]);
+    }
+
+
+
 
     public function submitNumber(Resource $resource)
     {

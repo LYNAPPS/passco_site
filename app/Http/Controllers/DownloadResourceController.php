@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\NormalizePhoneNumber;
 use App\Helpers\SmsHelper;
+use App\Models\ResourceAnswer;
 use App\Models\Student;
 use App\Models\StudentResource;
 use App\Services\StudentResourceRequest;
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Spatie\PdfToImage\Pdf;
 
 class DownloadResourceController extends Controller
 {
@@ -131,5 +133,30 @@ class DownloadResourceController extends Controller
         } else {
             return redirect()->back()->with(['error' => 'Failed to send message'], 500);
         }
+    }
+
+
+
+    // viewAnswerStudent
+
+
+
+    public function viewAnswerStudent(Request $request, $id)
+    {
+        // Retrieve the resource answer
+        $resource = ResourceAnswer::where('resource_id', $id)->first();
+
+        // Convert the PDF to images
+        $pdf = new Pdf(storage_path('app/public/' . $resource->file_path)); // Assuming the PDF is stored in the public directory
+        $pdf->setOutputFormat('jpg'); // Convert each page to JPG image
+        $pdf->saveImage(storage_path('app/public/images')); // Save the images to a directory
+
+        // Now, get the image file paths
+        $imagePaths = [];
+        foreach (range(1, $pdf->getNumberOfPages()) as $pageNumber) {
+            $imagePaths[] = asset('storage/images/page_' . $pageNumber . '.jpg');
+        }
+
+        return view('answer-view', compact('imagePaths'));
     }
 }

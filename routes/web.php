@@ -33,11 +33,21 @@ Route::middleware(['visitor'])->group(function () {
     Route::controller(HomePagesController::class)->group(function () {
         Route::get('/', 'index')->name('homepage');
         Route::get('/libraries', 'libraries')->name('libraries');
+        Route::get('/answer-libraries', 'answerLibraries')->name('answer-libraries');
         Route::get('/all-subjects', 'allSubjects')->name('subjects-all');
         Route::get('/{id}/pasco-all', 'viewSubjectPasco')->name('view-subject-pasco');
+        Route::get('/{id}/answers-all', 'viewAnswerPasco')->name('view-answer-all');
+
+
+
         Route::get('/{slug}/{id}/view-library', 'viewExamLibrary')->name('view-exams-library');
         Route::get('/exams/{examType}/content', 'fetchContent')->name('exams.content');
         Route::get('/subjects/all', 'fetchAllSubjects')->name('exams.content');
+
+        Route::get('/pasco/{examType}/answers', 'fetchContentAnswer')->name('exams.content');
+        Route::get('/answers/all', 'fetchAllAnswer')->name('exams.content');
+
+
         Route::get('/download/step-one/{resource}', 'submitNumber')->name('submit.phone');
         Route::get('/download/step-two/{student}/{token}', 'submitOtherDetails')->name('submit.details');
         Route::get('/download/preview/{student}/{token}', 'downloadPreview')->name('preview.download');
@@ -46,6 +56,10 @@ Route::middleware(['visitor'])->group(function () {
     Route::controller(FilterController::class)->group(function () {
         Route::get('/load-initial-resources', 'fetchFilteredResources')->name('load-initial-resources');
         Route::get('/filter-resources', 'filterResources')->name('filter-resources');
+
+
+        Route::get('/load-initial-answers', 'fetchFilteredAnswer')->name('load-initial-resources');
+        Route::get('/filter-answers', 'filterAnswer')->name('filter-resources');
     });
 
     Route::controller(DownloadResourceController::class)->group(function () {
@@ -53,9 +67,10 @@ Route::middleware(['visitor'])->group(function () {
         Route::post('/save-student-details', 'saveStudentDetails')->name('save-student-detials');
         Route::post('/sms-requested', 'smsRequestSent')->name('sms-student-request');
 
-        //
-
         Route::get('/download-resource/{token}', 'verifyLink')->name('verify-token');
+
+        //view answer routes
+        Route::get('/view-answer/{id}', 'viewAnswerStudent')->name('view-answer');
     });
 });
 

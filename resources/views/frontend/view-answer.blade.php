@@ -90,7 +90,7 @@
             function fetchFilteredResources() {
 
                 const id = {{ $id }};
-                const url = `/load-initial-resources?id=${id}`; // Send ID as a query parameter
+                const url = `/load-initial-answers?id=${id}`; // Send ID as a query parameter
 
 
                 fetch(url)
@@ -122,7 +122,7 @@
                 const categoryID = document.getElementById('category_id').value;
 
                 fetch(
-                        `/filter-resources?exam_year=${selectedYear}&subject_id=${selectedSubjectId}&category_id=${categoryID}`
+                        `/filter-answers?exam_year=${selectedYear}&subject_id=${selectedSubjectId}&category_id=${categoryID}`
                     )
                     .then(response => response.json())
                     .then(data => {
