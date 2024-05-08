@@ -16,7 +16,7 @@
                                     <li><a href="{{ route('homepage') }}">Home</a></li>
                                     <li><a href="{{ route('libraries') }}">Pasco Library</a></li>
                                     <li><a href="{{ route('answer-libraries') }}">Answers Library</a></li>
-                                    <li><a href="{{ route('libraries') }}">Lessons</a></li>
+                                    <li><a href="{{ route('lesson') }}">Lessons</a></li>
                                     {{-- <li><a href="/">About Us</a></li>
                                     <li><a href="/">Contact</a></li> --}}
                                 </ul>

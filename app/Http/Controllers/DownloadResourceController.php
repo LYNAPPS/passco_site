@@ -47,7 +47,11 @@ class DownloadResourceController extends Controller
         $student = Student::where('phone_number', $phoneNumber)->first();
         if ($student) {
 
-            return redirect()->route('preview.download', $student->id);
+            $oldStudent =  (new StudentResourceRequest)->notNewStudent($request, $student);
+
+            // dd($oldStudent->download_token);
+            // return redirect()->route('preview.download', $student->id);
+            return redirect()->route('preview.download', ['student' => $student->id, 'token' => $oldStudent->download_token]);
         }
 
         $newStudent =  (new StudentResourceRequest)->stageOne($request, $phoneNumber);
@@ -125,9 +129,9 @@ class DownloadResourceController extends Controller
         if ($sendLink->successful()) {
             $responseBody = $sendLink->json();
             if ($responseBody['status'] === 'ACCEPTED') {
-                return redirect()->back()->with(['success' => 'Message accepted for sending']);
+                return redirect()->route('verify-token', $studentResource->download_token)->with(['success' => 'Link Successfully Sent']);
             } else {
-                return redirect()->back()->with(['error' => 'Message could not be sent'], 400);
+                return redirect()->back()->with(['error' => 'Message could not be sent, please try again'], 400);
             }
         } else {
             return redirect()->back()->with(['error' => 'Failed to send message'], 500);

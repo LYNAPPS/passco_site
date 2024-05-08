@@ -49,7 +49,20 @@ class StudentResourceRequest
     }
 
 
-    public function notNewStudent()
+    public function notNewStudent($request, $student)
     {
+        // Generate download token and set expiration date
+        $downloadToken = Str::random(40);
+        $expirationDate = Carbon::now()->addMinutes(30);
+
+        // Create student resource record
+        $studentResource = new StudentResource();
+        $studentResource->resource_id = $request->resourceID;
+        $studentResource->student_id = $student->id;
+        $studentResource->download_token = $downloadToken;
+        $studentResource->expires_at = $expirationDate;
+        $studentResource->save();
+
+        return $studentResource;
     }
 }

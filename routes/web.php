@@ -33,6 +33,7 @@ Route::middleware(['visitor'])->group(function () {
     Route::controller(HomePagesController::class)->group(function () {
         Route::get('/', 'index')->name('homepage');
         Route::get('/libraries', 'libraries')->name('libraries');
+        Route::get('/lessons', 'lessons')->name('lesson');
         Route::get('/answer-libraries', 'answerLibraries')->name('answer-libraries');
         Route::get('/all-subjects', 'allSubjects')->name('subjects-all');
         Route::get('/{id}/pasco-all', 'viewSubjectPasco')->name('view-subject-pasco');

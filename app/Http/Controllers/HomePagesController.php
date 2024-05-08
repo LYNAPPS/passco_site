@@ -28,6 +28,11 @@ class HomePagesController extends Controller
         return view('frontend.libraries', compact('exams', 'subjects'));
     }
 
+    public function lessons()
+    {
+        return view('frontend.lesson');
+    }
+
 
     public function answerLibraries()
     {
@@ -143,7 +148,6 @@ class HomePagesController extends Controller
         // Return subjects as JSON response
         return response()->json(['html' => $html]);
     }
-
 
 
 

@@ -31,6 +31,7 @@ class SmsHelper
                 "Content-Type" => "application/json"
             ])->post("https://frog.wigal.com.gh/api/v2/sendmsg", $messageData);
 
+            Log::info($response);
             return $response;
         } catch (Exception $e) {
             Log::error("Error: " . $e->getMessage());

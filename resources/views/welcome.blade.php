@@ -58,24 +58,8 @@
 
                 <div class="col-xl-6 col-lg-6">
                     <div class="h8_about-img mr-35 mb-20">
-                        <div class="h8_about-img-left mb-30 w_img">
-                            <div class="h8_about-img-year">
-                                <h3>24 WASSCE <span>QUESTIONS</span></h3>
-                            </div>
-                            <img src="{{ url('assets/frontend/img/about/8/a-1.jpg') }}" alt=""
-                                class="wow fadeInLeft" data-wow-delay="0.3s">
-                        </div>
-                        <div class="h8_about-img-right mb-30">
-                            <img src="{{ url('assets/frontend/img/about/8/a-2.jpg') }}" alt=""
-                                class="w-100 wow fadeInRight" data-wow-delay="0.5s">
-                            <div class="h8_about-img-count">
-                                <div class="h8_about-img-count-info">
-                                    <h3>32K+</h3>
-                                    <p>BECE QUESTIONS</p>
-                                </div>
-                            </div>
-                        </div>
 
+                        <img src="https://www.mynewsgh.com/wp-content/uploads/2017/09/wesley-girls.jpg" alt="">
                     </div>
                 </div>
 
@@ -89,23 +73,8 @@
             <div class="row">
                 <div class="col-xl-6 col-lg-6">
                     <div class="h8_about-img mr-35 mb-20">
-                        <div class="h8_about-img-left mb-30 w_img">
-                            <div class="h8_about-img-year">
-                                <h3>24 WASSCE <span>QUESTIONS</span></h3>
-                            </div>
-                            <img src="{{ url('assets/frontend/img/about/8/a-1.jpg') }}" alt=""
-                                class="wow fadeInLeft" data-wow-delay="0.3s">
-                        </div>
-                        <div class="h8_about-img-right mb-30">
-                            <img src="{{ url('assets/frontend/img/about/8/a-2.jpg') }}" alt=""
-                                class="w-100 wow fadeInRight" data-wow-delay="0.5s">
-                            <div class="h8_about-img-count">
-                                <div class="h8_about-img-count-info">
-                                    <h3>32K+</h3>
-                                    <p>BECE QUESTIONS</p>
-                                </div>
-                            </div>
-                        </div>
+                        <img src="https://img.freepik.com/free-vector/coming-soon-text-grunge-background_91128-1643.jpg"
+                            alt="">
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6">

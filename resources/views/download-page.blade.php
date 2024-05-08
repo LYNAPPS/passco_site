@@ -22,8 +22,8 @@
             <div class="account-bottom">
                 <div class="account-option">
 
-                    <a href="{{ route('homepage') }}" class="account-option-account">
-                        <span>Back Home</span>
+                    <a href="{{ route('view-answer', $file->id) }}" class="account-option-account">
+                        <span>View Answer</span>
                     </a>
                 </div>
 
