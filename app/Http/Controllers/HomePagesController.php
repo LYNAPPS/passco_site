@@ -21,6 +21,7 @@ class HomePagesController extends Controller
 
     public function libraries()
     {
+
         $exams = ExamType::all();
         $subjects = Subject::with('examType')->take(8)->get();
 

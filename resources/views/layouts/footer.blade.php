@@ -86,7 +86,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="h6_copyright-text">
-                        <p>Copyright © 2024 - {{ date('Y') }} All Rights Reserved by {{ env('APP_NAME') }}</p>
+                        <p>Copyright © 2023 - {{ date('Y') }} All Rights Reserved by {{ env('APP_NAME') }}</p>
                     </div>
                 </div>
             </div>
