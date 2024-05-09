@@ -18,9 +18,12 @@
                                         <th>
                                             Name
                                         </th>
-                                        {{-- <th>
-                                            Class
-                                        </th> --}}
+                                        <th>
+                                            Category
+                                        </th>
+                                        <th>
+                                            Level
+                                        </th>
                                         <th>
                                             Action
                                         </th>
@@ -33,9 +36,13 @@
                                             <td>
                                                 {{ $subject->name }}
                                             </td>
-                                            {{-- <td>
+                                            <td>
+                                                {{ $subject->tag }}
+                                            </td>
+
+                                            <td>
                                                 {{ $subject->level->name }}
-                                            </td> --}}
+                                            </td>
 
                                             <td>
                                                 <a href="{{ route('subjects.edit', $subject->id) }}"

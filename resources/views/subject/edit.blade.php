@@ -37,6 +37,18 @@
                                 </select>
                             </div>
 
+                            <div class="form-group col-sm-6">
+                                <label for="subject">Select Category</label>
+                                <select name="tag" id="tag" class="form-control" required>
+                                    <option value="">Select Category</option>
+                                    <option value="core" {{ $subject->tag == 'core' ? 'selected' : '' }}>Core Subjects
+                                    </option>
+                                    <option value="elective" {{ $subject->tag == 'elective' ? 'selected' : '' }}>Elective
+                                        Subjects</option>
+                                </select>
+                            </div>
+
+
 
                             <div class="form-group col-sm-12">
                                 <label for="name">Subject Name</label>

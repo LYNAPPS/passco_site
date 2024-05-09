@@ -26,6 +26,7 @@ class AdminSubjectsController extends Controller
             'level_id' => 'required|exists:levels,id',
             'exam_type_id' => 'required|exists:exam_types,id',
             'name' => 'required|string|max:255',
+            'tag' => 'required|string'
         ]);
         $data = $request->except(['_token']);
 
@@ -52,6 +53,7 @@ class AdminSubjectsController extends Controller
             'level_id' => 'required|exists:levels,id',
             'exam_type_id' => 'required|exists:exam_types,id',
             'name' => 'required|string|max:255',
+            'tag' => 'required|string'
         ]);
 
         $subject->update($request->all());

@@ -39,6 +39,17 @@
                         </div>
 
                         <div class="form-group col-sm-3 col-6">
+                            <label for="exam">Subject Category</label>
+                            <select name="category" id="category" class="form-control">
+                                <option value="">Select to filter</option>
+                                <option value="core">Core Subjects</option>
+                                <option value="elective">Elective Subjects</option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="form-group col-sm-3 col-6">
                             <label for="exam">Select Subject</label>
                             <select name="subject_id" id="subject_id" class="form-control" required>
                                 <option value="">Select A Subject</option>
@@ -114,15 +125,15 @@
         <script>
             document.getElementById('exam_year').addEventListener('change', fetchResources);
             document.getElementById('subject_id').addEventListener('change', fetchResources);
-            // document.getElementById('category_id').addEventListener('change', fetchResources);
+            document.getElementById('category').addEventListener('change', fetchResources);
 
             function fetchResources() {
                 const selectedYear = document.getElementById('exam_year').value;
                 const selectedSubjectId = document.getElementById('subject_id').value;
                 const categoryID = document.getElementById('category_id').value;
-
+                const category = document.getElementById('category').value;
                 fetch(
-                        `/filter-answers?exam_year=${selectedYear}&subject_id=${selectedSubjectId}&category_id=${categoryID}`
+                        `/filter-answers?exam_year=${selectedYear}&subject_id=${selectedSubjectId}&category_id=${categoryID}&category=${category}`
                     )
                     .then(response => response.json())
                     .then(data => {
