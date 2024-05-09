@@ -45,14 +45,17 @@ class DownloadResourceController extends Controller
 
         // Check if the student exists
         $student = Student::where('phone_number', $phoneNumber)->first();
-        if ($student) {
+        if ($student && $student->full_name !== null && $student->level !== null) {
 
             $oldStudent =  (new StudentResourceRequest)->notNewStudent($request, $student);
-
-            // dd($oldStudent->download_token);
-            // return redirect()->route('preview.download', $student->id);
             return redirect()->route('preview.download', ['student' => $student->id, 'token' => $oldStudent->download_token]);
         }
+
+        if ($student && $student->full_name == null && $student->level == null) {
+            $oldStudent =  (new StudentResourceRequest)->notNewStudent($request, $student);
+            return redirect()->route('submit.details', ['student' => $student->id, 'token' => $oldStudent->download_token]);
+        }
+
 
         $newStudent =  (new StudentResourceRequest)->stageOne($request, $phoneNumber);
 

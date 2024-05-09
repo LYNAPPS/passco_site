@@ -78,20 +78,19 @@
 
 
 
-            <div id="quiz-container" class="row">
-
-
-                <style>
-                    .h3_category-item {
-                        padding: 20px 10px 20px 15px;
-                    }
-
-                    .h3_category-item-content a {
-                        font-size: 20px;
-                    }
-                </style>
-
+            <div id="loading-indicator" class="loader-wrapper">
+                <div class="loader"></div>
+                <div>Loading...</div>
             </div>
+
+
+            <div id="main-container">
+                <div id="quiz-container" class="row">
+                    <!-- Content will be loaded here -->
+                </div>
+            </div>
+
+        </div>
         </div>
     </section>
     <!-- category area end -->
