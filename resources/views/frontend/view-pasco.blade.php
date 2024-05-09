@@ -76,41 +76,90 @@
             </div>
 
 
-
-
-            <div id="quiz-container" class="row">
-
-
-                <style>
-                    .h3_category-item {
-                        padding: 20px 10px 20px 15px;
-                    }
-
-                    .h3_category-item-content a {
-                        font-size: 20px;
-                    }
-                </style>
-
+            <div id="loading-indicator" class="loader-wrapper">
+                <div class="loader"></div>
+                <div>Loading...</div>
             </div>
+
+
+            <div id="main-container">
+                <div id="quiz-container" class="row">
+                    <!-- Content will be loaded here -->
+                </div>
+            </div>
+
+
+
+            <style>
+                .h3_category-item {
+                    padding: 20px 10px 20px 15px;
+                }
+
+                .h3_category-item-content a {
+                    font-size: 20px;
+                }
+
+                .loader-wrapper {
+                    display: none;
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    text-align: center;
+                    z-index: 9999;
+                }
+
+                .loader {
+                    border: 8px solid #f3f3f3;
+                    border-radius: 50%;
+                    border-top: 8px solid #3498db;
+                    width: 60px;
+                    height: 60px;
+                    animation: spin 1.5s linear infinite;
+                    margin-bottom: 10px;
+                }
+
+                @keyframes spin {
+                    0% {
+                        transform: rotate(0deg);
+                    }
+
+                    100% {
+                        transform: rotate(360deg);
+                    }
+                }
+            </style>
         </div>
     </section>
     <!-- category area end -->
 
+
+
     @push('scripts')
         <script>
             function fetchFilteredResources() {
-
                 const id = {{ $id }};
                 const url = `/load-initial-resources?id=${id}`; // Send ID as a query parameter
 
+                // Show loading indicator
+                document.getElementById('main-container').style.display = 'none';
+                document.getElementById('loading-indicator').style.display = 'block';
 
                 fetch(url)
                     .then(response => response.json())
                     .then(data => {
+                        // Hide loading indicator
+                        document.getElementById('loading-indicator').style.display = 'none';
+                        document.getElementById('main-container').style.display = 'block';
                         document.getElementById('quiz-container').innerHTML = data.html;
                     })
-                    .catch(error => console.error('Error fetching quizzes:', error));
+                    .catch(error => {
+                        console.error('Error fetching quizzes:', error);
+                        // Hide loading indicator on error
+                        document.getElementById('loading-indicator').style.display = 'none';
+                    });
             }
+
             document.addEventListener('DOMContentLoaded', function() {
                 fetchFilteredResources();
                 document.getElementById('searchButton').addEventListener('click', function(event) {
@@ -120,7 +169,6 @@
                 });
             });
         </script>
-
 
         <script>
             document.getElementById('exam_year').addEventListener('change', fetchResources);
@@ -133,15 +181,24 @@
                 const categoryID = document.getElementById('category_id').value;
                 const category = document.getElementById('category').value;
 
+                // Show loading indicator
+                document.getElementById('main-container').style.display = 'none';
+                document.getElementById('loading-indicator').style.display = 'block';
+
                 fetch(
                         `/filter-resources?exam_year=${selectedYear}&subject_id=${selectedSubjectId}&category_id=${categoryID}&category=${category}`
                     )
                     .then(response => response.json())
                     .then(data => {
+                        // Hide loading indicator
+                        document.getElementById('main-container').style.display = 'block';
+                        document.getElementById('loading-indicator').style.display = 'none';
                         document.getElementById('quiz-container').innerHTML = data.html;
                     })
                     .catch(error => {
                         console.error('Error fetching lectures:', error);
+                        // Hide loading indicator on error
+                        document.getElementById('loading-indicator').style.display = 'none';
                     });
             }
 
@@ -149,4 +206,5 @@
             fetchResources();
         </script>
     @endpush
+
 </x-app-layout>
