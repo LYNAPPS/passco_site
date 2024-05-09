@@ -102,10 +102,15 @@
                 const id = {{ $id }};
                 const url = `/load-initial-answers?id=${id}`; // Send ID as a query parameter
 
+                // Show loading indicator
+                document.getElementById('main-container').style.display = 'none';
+                document.getElementById('loading-indicator').style.display = 'block';
 
                 fetch(url)
                     .then(response => response.json())
                     .then(data => {
+                        document.getElementById('loading-indicator').style.display = 'none';
+                        document.getElementById('main-container').style.display = 'block';
                         document.getElementById('quiz-container').innerHTML = data.html;
                     })
                     .catch(error => console.error('Error fetching quizzes:', error));
@@ -131,11 +136,19 @@
                 const selectedSubjectId = document.getElementById('subject_id').value;
                 const categoryID = document.getElementById('category_id').value;
                 const category = document.getElementById('category').value;
+
+
+                // Show loading indicator
+                document.getElementById('main-container').style.display = 'none';
+                document.getElementById('loading-indicator').style.display = 'block';
+
                 fetch(
                         `/filter-answers?exam_year=${selectedYear}&subject_id=${selectedSubjectId}&category_id=${categoryID}&category=${category}`
                     )
                     .then(response => response.json())
                     .then(data => {
+                        document.getElementById('main-container').style.display = 'block';
+                        document.getElementById('loading-indicator').style.display = 'none';
                         document.getElementById('quiz-container').innerHTML = data.html;
                     })
                     .catch(error => {
