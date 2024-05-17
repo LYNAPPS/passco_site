@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminPagesController;
 use App\Http\Controllers\Admin\AdminSubjectsController;
 use App\Http\Controllers\Admin\AdminQuestionTypeController;
 use App\Http\Controllers\Admin\ExaminationTypeController;
+use App\Http\Controllers\AdminStudentController;
 use App\Http\Controllers\DownloadResourceController;
 use App\Http\Controllers\ExamCategroyController;
 use App\Http\Controllers\FilterController;
@@ -142,6 +143,11 @@ Route::middleware('auth', 'verified')->group(function () {
             Route::put('/question-type/{QuestionType}/update', 'update')->name('question_type.update');
 
             Route::delete('/question-type/{QuestionType}destory', 'destroy')->name('question_type.destroy');
+        });
+
+        Route::controller(AdminStudentController::class)->group(function () {
+            Route::get('/students', 'index')->name('students');
+            Route::get('/students/create', 'create')->name('students.create');
         });
     });
 

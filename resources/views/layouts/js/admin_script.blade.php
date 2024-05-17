@@ -21,3 +21,5 @@
 <!-- End custom js for this page-->
 
 @include('layouts.js.custom_script')
+
+@stack('scripts')

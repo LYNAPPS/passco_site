@@ -49,6 +49,8 @@
         </div>
     </div>
     @include('layouts.js.admin_script')
+
+
 </body>
 
 </html>

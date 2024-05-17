@@ -21,9 +21,9 @@
                 <div class="account-form-input">
                     <select class="form-control @error('student_level') is-invalid @enderror" name="student_level">
                         <option value="">Select Your Level</option>
-                        <option value="1">Form 1</option>
-                        <option value="2">Form 2</option>
-                        <option value="3">Form 3</option>
+                        <option value="1" {{ old('student_level') == 1 ? 'selected' : '' }}>Form 1</option>
+                        <option value="2" {{ old('student_level') == 2 ? 'selected' : '' }}>Form 2</option>
+                        <option value="3" {{ old('student_level') == 3 ? 'selected' : '' }}>Form 3</option>
                     </select>
                 </div>
             </div>
